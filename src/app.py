@@ -26,7 +26,7 @@ class App(ShowBase):
         self.setBackgroundColor(*BACKGROUND_COLOR)
 
     def _setup_camera(self):
-        self.camera.setPos(0, -10.0, 1.2)
+        self.camera.setPos(5.0, -10.0, 1.2)
         self.camera.lookAt(0, 0, 0.8)
 
     def _setup_input(self):
