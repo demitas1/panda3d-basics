@@ -12,6 +12,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## アセットの準備（初回のみ）
+
+Panda3D 標準ローダーは GLB の骨格アニメーションを正しく読めないため、
+`panda3d-gltf` 付属の `gltf2bam` で BAM 形式に変換してから使用する。
+
+```bash
+.venv/bin/gltf2bam assets/kaykit-mannequin-medium.glb assets/kaykit-mannequin-medium.bam
+```
+
+生成された `.bam` ファイルは `.gitignore` 対象のため、クローン後に一度だけ実行が必要。
+
 ## 実行
 
 ```bash
@@ -28,3 +39,9 @@ ESC キーで終了。
 ## ライセンス
 
 MIT License — 詳細は [LICENSE.txt](LICENSE.txt) を参照。
+
+### アセット
+
+`assets/` 内のキャラクターアセットは [Kay Lousberg](https://www.kaylousberg.com) 氏による
+[KayKit : Character Animations](https://kaylousberg.itch.io/) を使用しています。
+ライセンス: [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)（パブリックドメイン）

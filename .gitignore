@@ -7,3 +7,5 @@ dist/
 build/
 assets/*.glb
 assets/*.fbx
+assets/*.bam
+assets/*.blend*

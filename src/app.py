@@ -4,9 +4,7 @@ from src.config import (
     WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT,
     BACKGROUND_COLOR, SHOW_FPS,
 )
-
-# フェーズ2で追加予定
-# from src.player import Player
+from src.player import Player
 
 
 class App(ShowBase):
@@ -14,8 +12,10 @@ class App(ShowBase):
     def __init__(self):
         super().__init__()
         self._setup_window()
+        self._setup_camera()
         self._setup_input()
         self._setup_debug()
+        self.player = Player(self.render)
         self.taskMgr.add(self._update, "main_update")
 
     def _setup_window(self):
@@ -24,6 +24,10 @@ class App(ShowBase):
         props.setSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.win.requestProperties(props)
         self.setBackgroundColor(*BACKGROUND_COLOR)
+
+    def _setup_camera(self):
+        self.camera.setPos(0, -10.0, 1.2)
+        self.camera.lookAt(0, 0, 0.8)
 
     def _setup_input(self):
         self.disableMouse()
@@ -35,7 +39,5 @@ class App(ShowBase):
 
     def _update(self, task):
         dt = self.clock.getDt()
-        # フェーズ2以降でキャラクター移動などをここに追加する
-        # if self.player:
-        #     self.player.update(dt)
+        self.player.update(dt)
         return task.cont
