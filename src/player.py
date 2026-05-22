@@ -5,6 +5,7 @@ from src.config import CHARACTER_BAM
 class Player:
 
     def __init__(self, render):
+        self._render = render
         self._pressed: set[str] = set()
         self._current_anim: str = ""
         self._velocity_x = 0.0
@@ -12,16 +13,16 @@ class Player:
         self._direction = 0.0
 
         self.actor = Actor(str(CHARACTER_BAM))
-        self.actor.reparentTo(render)
+        self.actor.reparentTo(self._render)
         self._update_anim()
 
     MOVE_SPEED = 1.0
 
     def getX(self) -> float:
-        return self.actor.getX(render)
+        return self.actor.getX(self._render)
 
     def getY(self) -> float:
-        return self.actor.getY(render)
+        return self.actor.getY(self._render)
 
     def update(self, dt: float) -> None:
         self.actor.setX(self.actor.getX() + self._velocity_x * dt)
