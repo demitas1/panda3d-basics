@@ -25,26 +25,33 @@ class App(ShowBase):
             self.accept(key,         self.player.key_down, [key])
             self.accept(f"{key}-up", self.player.key_up, [key])
 
-    def _setup_window(self):
+    def _setup_window(self) -> None:
         props = WindowProperties()
         props.setTitle(WINDOW_TITLE)
         props.setSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.win.requestProperties(props)
         self.setBackgroundColor(*BACKGROUND_COLOR)
 
-    def _setup_camera(self):
+    def _setup_camera(self) -> None:
         self.camera.setPos(5.0, -10.0, 1.2)
-        self.camera.lookAt(0, 0, 0.8)
+        self.camera.lookAt(0.0, 0.0, 0.8)
 
-    def _setup_input(self):
+    def _setup_input(self) -> None:
         self.disableMouse()
         self.accept("escape", self.userExit)
 
-    def _setup_debug(self):
+    def _setup_debug(self) -> None:
         if SHOW_FPS:
             self.setFrameRateMeter(True)
 
     def _update(self, task):
         dt = self.clock.getDt()
         self.player.update(dt)
+
+        # camera follows
+        x = self.player.getX()
+        y = self.player.getY()
+        self.camera.setPos(5.0 + x, -10.0 + y, 1.2)
+        self.camera.lookAt(x, y, 0.8)
+
         return task.cont

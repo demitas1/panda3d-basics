@@ -17,12 +17,18 @@ class Player:
 
     MOVE_SPEED = 1.0
 
-    def update(self, dt):
+    def getX(self) -> float:
+        return self.actor.getX(render)
+
+    def getY(self) -> float:
+        return self.actor.getY(render)
+
+    def update(self, dt: float) -> None:
         self.actor.setX(self.actor.getX() + self._velocity_x * dt)
         self.actor.setY(self.actor.getY() + self._velocity_y * dt)
         self.actor.setH(self._direction)
 
-    def cleanup(self):
+    def cleanup(self) -> None:
         self.actor.cleanup()
 
     def key_down(self, key: str) -> None:
