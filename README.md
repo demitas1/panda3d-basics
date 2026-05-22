@@ -18,7 +18,8 @@ Panda3D 標準ローダーは GLB の骨格アニメーションを正しく読�
 `panda3d-gltf` 付属の `gltf2bam` で BAM 形式に変換してから使用する。
 
 ```bash
-.venv/bin/gltf2bam assets/kaykit-mannequin-medium.glb assets/kaykit-mannequin-medium.bam
+.venv/bin/gltf2bam assets/kaykit-mannequin-medium-append.glb assets/kaykit-mannequin-medium.bam
+.venv/bin/gltf2bam assets/panda3d-level.glb assets/level.bam
 ```
 
 生成された `.bam` ファイルは `.gitignore` 対象のため、クローン後に一度だけ実行が必要。
