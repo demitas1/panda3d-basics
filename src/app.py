@@ -17,6 +17,12 @@ class App(ShowBase):
         self._setup_debug()
         self.player = Player(self.render)
         self.taskMgr.add(self._update, "main_update")
+        self._setup_input_system()
+
+    def _setup_input_system(self) -> None:
+        for key in ("w", "a", "s", "d"):
+            self.accept(key,         self.player.key_down, [key])
+            self.accept(f"{key}-up", self.player.key_up, [key])
 
     def _setup_window(self):
         props = WindowProperties()
