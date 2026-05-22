@@ -5,7 +5,7 @@ from src.config import (
     BACKGROUND_COLOR, SHOW_FPS,
 )
 from src.player import Player
-
+from src.level import Level
 
 class App(ShowBase):
 
@@ -15,6 +15,7 @@ class App(ShowBase):
         self._setup_camera()
         self._setup_input()
         self._setup_debug()
+        self.level = Level(self.render, self.loader)
         self.player = Player(self.render)
         self.taskMgr.add(self._update, "main_update")
         self._setup_input_system()
