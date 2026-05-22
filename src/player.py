@@ -9,6 +9,7 @@ class Player:
         self._current_anim: str = ""
         self._velocity_x = 0.0
         self._velocity_y = 0.0
+        self._direction = 0.0
 
         self.actor = Actor(str(CHARACTER_BAM))
         self.actor.reparentTo(render)
@@ -19,6 +20,7 @@ class Player:
     def update(self, dt):
         self.actor.setX(self.actor.getX() + self._velocity_x * dt)
         self.actor.setY(self.actor.getY() + self._velocity_y * dt)
+        self.actor.setH(self._direction)
 
     def cleanup(self):
         self.actor.cleanup()
@@ -36,18 +38,22 @@ class Player:
         if "s" in self._pressed:
             self._velocity_x = 0.0
             self._velocity_y = -self.MOVE_SPEED
+            self._direction = 0.0
         elif "w" in self._pressed:
             self._velocity_x = 0.0
             self._velocity_y = self.MOVE_SPEED
+            self._direction = 180.0
         elif "a" in self._pressed:
             self._velocity_x = -self.MOVE_SPEED
             self._velocity_y = 0.0
+            self._direction = 270.0
         elif "d" in self._pressed:
             self._velocity_x = self.MOVE_SPEED
             self._velocity_y = 0.0
+            self._direction = 90.0
         else:
-            self._velocity_y = 0.0
             self._velocity_x = 0.0
+            self._velocity_y = 0.0
 
         # set animation
         anim = "Walking_A" if self._pressed else "Idle_A"
